@@ -1,0 +1,21 @@
+%% run auto white balance 
+%
+
+clear;
+close all;
+fclose all;
+
+path = '/home/shaneyuan/Project/AutoWhiteBalance/data/shi_gehler/preprocessed/GehlerShi';
+
+[img, gt_gain] = data_loader(path, 2);
+
+img = single(img);
+img = img / max(img(:));
+img = apply_srgb_gamma(img);
+
+gt_gain = 1 ./ gt_gain;
+gt_gain = gt_gain / sum(gt_gain) * 3;
+
+out = apply_white_balance(img, gt_gain);
+
+subplot(m,n,p)
