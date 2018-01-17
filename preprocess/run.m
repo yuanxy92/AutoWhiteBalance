@@ -24,4 +24,6 @@ for i = 1:num
     
 end
 
-save('../data/data.mat','-v7.3', 'train_data', 'train_label');
+train_data = single(train_data);
+train_label = single(train_label);
+save('../data/data_7.0.mat', 'train_data', 'train_label');
