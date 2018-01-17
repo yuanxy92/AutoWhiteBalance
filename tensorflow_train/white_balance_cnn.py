@@ -3,7 +3,7 @@ import numpy as np
 import scipy.io as sio
 
 batch_szie = 8
-beta = 1
+beta = 0.1
 hist_size = 256
 lr = 0.5
 
@@ -22,7 +22,7 @@ tf_x = tf.placeholder(tf.float32, [batch_szie, hist_size, hist_size, 1])     # i
 tf_y = tf.placeholder(tf.float32, [batch_szie, hist_size, hist_size, 1])     # input y
 
 # Variables.
-kernel = tf.Variable(tf.truncated_normal([64, 64, 1, 1], stddev = 0.1))
+kernel = tf.Variable(tf.truncated_normal([32, 32, 1, 1], stddev = 0.1))
 
 # neural network layers
 # CNN
@@ -38,7 +38,7 @@ soft = tf.nn.softmax(
     name = None
 )
 
-loss = (tf.nn.l2_loss(soft - tf_y) + beta * tf.nn.l2_loss(kernel));
+loss = (tf.nn.l2_loss(tf.multiply(soft, tf_y)) + beta * tf.nn.l2_loss(kernel));
 train_op = tf.train.GradientDescentOptimizer(lr).minimize(loss)
 
 # Session
