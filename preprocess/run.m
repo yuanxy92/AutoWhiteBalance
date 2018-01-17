@@ -6,24 +6,22 @@ close all;
 fclose all;
 
 path = '/home/shaneyuan/Project/AutoWhiteBalance/data/shi_gehler/preprocessed/GehlerShi';
+num = 568;
 
-[img, gt_gain] = data_loader(path, 500);
+train_data = zeros(num, 256, 256);
+train_label = zeros(num, 256, 256);
 
-img = single(img);
-img = img / max(img(:));
+for i = 1:num
+    fprintf('Process image %d ...\n', i);
+    [img, gt_gain] = data_loader(path, 500);
+    [gt_response] = gt_response_from_gt_gain(gt_gain);
+    img = single(img);
+    img = img / max(img(:));
+    hist = calc_log_hist(img);
+    
+    train_data(i, :, :) = hist;
+    train_label(i, :, :) = gt_response;
+    
+end
 
-hist = calc_log_hist(img);
-out = visualize_hist(hist);
-imshow(out);
-
-% gt_gain = 1 ./ gt_gain;
-% gt_gain = gt_gain / sum(gt_gain) * 3;
-% out = apply_white_balance(img, gt_gain);
-% 
-% img = apply_srgb_gamma(img);
-% out = apply_srgb_gamma(out);
-% 
-% subplot(1, 2, 1);
-% imshow(img);
-% subplot(1, 2, 2);
-% imshow(out);
+save('../data/data.mat','-v7.3', 'train_data', 'train_label');
