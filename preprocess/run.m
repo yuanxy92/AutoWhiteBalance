@@ -12,14 +12,18 @@ path = '/home/shaneyuan/Project/AutoWhiteBalance/data/shi_gehler/preprocessed/Ge
 img = single(img);
 img = img / max(img(:));
 
-gt_gain = 1 ./ gt_gain;
-gt_gain = gt_gain / sum(gt_gain) * 3;
-out = apply_white_balance(img, gt_gain);
-
-img = apply_srgb_gamma(img);
-out = apply_srgb_gamma(out);
-
-subplot(1, 2, 1);
-imshow(img);
-subplot(1, 2, 2);
+hist = calc_log_hist(img);
+out = visualize_hist(hist);
 imshow(out);
+
+% gt_gain = 1 ./ gt_gain;
+% gt_gain = gt_gain / sum(gt_gain) * 3;
+% out = apply_white_balance(img, gt_gain);
+% 
+% img = apply_srgb_gamma(img);
+% out = apply_srgb_gamma(out);
+% 
+% subplot(1, 2, 1);
+% imshow(img);
+% subplot(1, 2, 2);
+% imshow(out);
