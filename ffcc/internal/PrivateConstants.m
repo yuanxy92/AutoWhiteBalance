@@ -79,8 +79,8 @@ params.TRAINING.CONFIDENCE_EPSILON = 0.001;
 % two passes of optimization, one to pretrain with the convex loss and the
 % second to fine-tune with the non-convex loss.
 params.TRAINING.NUM_ITERS_ANNEAL = 2;
-params.TRAINING.NUM_ITERS_LBFGS_INITIAL = 16;
-params.TRAINING.NUM_ITERS_LBFGS_FINAL = 64;
+params.TRAINING.NUM_ITERS_LBFGS_INITIAL = 128;
+params.TRAINING.NUM_ITERS_LBFGS_FINAL = 256;
 
 % If true, use bilinear interpolation to construct the ground-truth PDF used in
 % the pretraining loss.

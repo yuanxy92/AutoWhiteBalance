@@ -15,7 +15,8 @@
 function paths = DataPaths
 
 % Where the Gehler-Shi dataset and its preprocessed variants are stored.
-paths.gehler_shi = '/usr/local/google/home/barron/code/ffcc/data/shi_gehler/';
+% paths.gehler_shi = '/usr/local/google/home/barron/code/ffcc/data/shi_gehler/';
+paths.gehler_shi = '/home/shaneyuan/Project/AutoWhiteBalance/ffcc/data/shi_gehler';
 
 % Where the Cheng et al dataset and its preprocessed variants are stored.
 paths.cheng = '';

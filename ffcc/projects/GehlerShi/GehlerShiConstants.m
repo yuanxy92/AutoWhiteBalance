@@ -39,14 +39,14 @@ params.TRAINING.LEARN_BIAS = true;
 
 % The number of bins in the histogram, which is also the size of the FFT
 % convolutions that must be performed.
-params.HISTOGRAM.NUM_BINS = 64;
+params.HISTOGRAM.NUM_BINS = 256;
 % The spacing between bins in UV coordinates, which determines the resolution
 % of the predicted UV white points.
-params.HISTOGRAM.BIN_SIZE = 1/32;
+params.HISTOGRAM.BIN_SIZE = 1/64;
 % The UV coordinate of the first bin in the histogram. Here it's set such
 % that the center of the histogram roughly corresponds to a gain of [2, 1, 2],
 % which is standard for cameras where green is gained up by 2x.
-params.HISTOGRAM.STARTING_UV = -0.4375;
+params.HISTOGRAM.STARTING_UV = -1.421875;
 % Whether or not to ignore zero-valued pixels when constructing histograms
 % from training data. This is a good idea if the training data contains
 % color charts or saturated pixels which have been masked out.
