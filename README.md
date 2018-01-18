@@ -8,5 +8,11 @@ Try to implement google's white balance paper:
 
 > Barron, Jonathan T., and Yun-Ta Tsai. "Fast Fourier Color Constancy." arXiv preprint arXiv:1611.07596 (2016).
 
-Use tensorflow as a tool for optimization. 
+## Implmentation
+
+1. Use tensorflow as a tool for optimization. (I tried, but it seems that tensorflow optimizer can not solve this optimization problem well.)
+
+2. Implement an optimization solver based on google's ffcc (the open source code of the second paper). The original code has many redundant code, I tried to re-implement a much more clean and easy-use version here.
+
+3. A fast CUDA based white balance algorithm 
 
