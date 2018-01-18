@@ -17,7 +17,7 @@ for i = 1:256
         u = (i - 128) * step;
         v = (j - 128) * step;
         l1 = [u, 1, v];
-        response(i, j) = acos(l1' * l2 / (norm(l1, 2) * norm(l2, 2))); 
+        response(i, j) = acos(l1 * l2' / (norm(l1, 2) * norm(l2, 2))); 
     end
 end
 
