@@ -5,7 +5,7 @@ function data = data_loader()
 % @date Jan 18, 2018
 %
 
-path = '/home/shaneyuan/Project/AutoWhiteBalance/data/shi_gehler/preprocessed/GehlerShi';
+path = '../data/shi_gehler/preprocessed/GehlerShi';
 num = 568;
 data = [];
 
