@@ -108,6 +108,8 @@ int AutoWhiteBalance::loadModel(std::string modelname) {
 	measurement = cv::Mat::zeros(2, 1, CV_32F);
 	kfPtr = std::make_shared<cv::KalmanFilter>(4, 2, 0);
 	kfPtr->transitionMatrix = (cv::Mat_<float>(4, 4) << 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1);
+	kfPtr->statePre.at<float>(0) = 0;
+	kfPtr->statePre.at<float>(1) = 0;
 	kfPtr->statePre.at<float>(2) = 0;
 	kfPtr->statePre.at<float>(3) = 0;
 	setIdentity(kfPtr->measurementMatrix);
@@ -123,10 +125,11 @@ int AutoWhiteBalance::loadModel(std::string modelname) {
 */
 int AutoWhiteBalance::predictKalman() {
 	float lu, lv, z;
-	frameInd = 0;
 	if (frameInd == 0) {
-		kfPtr->statePre.at<float>(0) = pos.x;
-		kfPtr->statePre.at<float>(1) = pos.y;
+		kfPtr->statePost.at<float>(0) = pos.x;
+		kfPtr->statePost.at<float>(1) = pos.y;
+		kfPtr->statePost.at<float>(2) = 0;
+		kfPtr->statePost.at<float>(3) = 0;
 		// change position to gain
 		lu = (pos.y + 1) * binsize + uv0;
 		lv = (pos.x + 1) * binsize + uv0;
@@ -141,8 +144,8 @@ int AutoWhiteBalance::predictKalman() {
 		measurement.at<float>(1, 0) = pos.y;
 		estimated = kfPtr->correct(measurement);
 		// change position to gain
-		lu = estimated.at<float>(1, 0) * binsize + uv0;
-		lv = estimated.at<float>(0, 0) * binsize + uv0;
+		lu = prediction.at<float>(1, 0) * binsize + uv0;
+		lv = prediction.at<float>(0, 0) * binsize + uv0;
 		z = sqrt(exp(-lu) * exp(-lu) + exp(-lv) * exp(-lv) + 1);
 	}
 	gain_r = z / exp(-lu);
