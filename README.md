@@ -18,8 +18,7 @@ Try to implement google's white balance paper:
 
 ## How to use
 1. download the training data and pre-trained model and extract to the root dir:
-
-link: https://pan.baidu.com/s/1jKeQWKm passwd: h2v5
+    link: https://pan.baidu.com/s/1jKeQWKm passwd: h2v5
 
 2. training code is in ./matlab_training
 
