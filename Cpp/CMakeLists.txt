@@ -36,7 +36,6 @@ set(MY_HEADER_FILES
 )
 set(MY_SOURCE_FILES
     AutoWhiteBalance.cpp
-    cuda/AutoWhiteBalance.cu
     main.cpp
 )
 
