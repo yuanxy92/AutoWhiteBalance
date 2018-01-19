@@ -5,19 +5,24 @@ clear;
 close all;
 fclose all;
 
-path = '/home/shaneyuan/Project/AutoWhiteBalance/data/shi_gehler/preprocessed/GehlerShi';
+path = '../data/shi_gehler/preprocessed/GehlerShi';
 num = 568;
 
 train_data = zeros(num, 256, 256);
 train_label = zeros(num, 256, 256);
 
-load ../data/model/data.mat
-load ../data/model/GehlerShi.mat
+% load ../data/model/data.mat
+load ../data/model/model.mat
 
-[img, gt_gain] = data_loader(path, 1);
+[img, gt_gain] = data_loader(path, 300);
+img = imread('E:\\data\\giga\\NanshanIPark\\2\\calibrate\\local_03.jpg');
+img = imresize(img, 0.1);
 hist = calc_log_hist(img);
-hist = hist / max(hist(:));
+hist = hist / sum(hist(:));
 
+hist = single(hist);
+model.F = single(model.F);
+model.B = single(model.B);
 [response, l_u, l_v] = apply_ffcc_model(hist, model);
 
 img = single(img);

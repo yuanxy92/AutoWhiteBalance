@@ -16,6 +16,8 @@ img(:, :, 2) = img(:, :, 2) / l_g;
 img(:, :, 3) = img(:, :, 3) / l_b;
 out = img ./ max(img(:));
 
+gain = [1 / l_r, 1 / l_g, 1 / l_b]
+
 out(out >= 1) = 1;
 out(out <= 0) = 0;
 

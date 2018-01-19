@@ -30,6 +30,9 @@ set(CUDA_NVCC_FLAGS
 
 set(MY_HEADER_FILES
     AutoWhiteBalance.h
+	helper_cuda.h
+	helper_string.h
+	Exceptions.h
 )
 set(MY_SOURCE_FILES
     AutoWhiteBalance.cpp
