@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 	AutoWhiteBalance autoWB;
 	autoWB.loadModel("E:/Project/AutoWhiteBalance/data/model/model.bin");
 
-	cv::Mat img = cv::imread("E:/data/giga/NanshanIPark/2/calibrate/local_00.jpg");
+	cv::Mat img = cv::imread("E:/data/giga/NanshanIPark/2/calibrate/ref_00.jpg");
 	cv::cuda::GpuMat img_d;
 	img_d.upload(img);
 

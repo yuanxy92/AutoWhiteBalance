@@ -123,6 +123,7 @@ int AutoWhiteBalance::loadModel(std::string modelname) {
 */
 int AutoWhiteBalance::predictKalman() {
 	float lu, lv, z;
+	frameInd = 0;
 	if (frameInd == 0) {
 		kfPtr->statePre.at<float>(0) = pos.x;
 		kfPtr->statePre.at<float>(1) = pos.y;
@@ -148,9 +149,9 @@ int AutoWhiteBalance::predictKalman() {
 	gain_g = z;
 	gain_b = z / exp(-lv);
 	float gain_sum = gain_r + gain_g + gain_b;
-	gain_r /= gain_sum;
-	gain_g /= gain_sum;
-	gain_b /= gain_sum;
+	gain_r = gain_r / gain_sum * 3;
+	gain_g = gain_g / gain_sum * 3;
+	gain_b = gain_b / gain_sum * 3;
 	frameInd++;
 	return 0;
 }
@@ -190,7 +191,7 @@ int AutoWhiteBalance::applyWhiteBalance(cv::cuda::GpuMat & img_d, float gain_r,
 @return int
 */
 int AutoWhiteBalance::apply(cv::cuda::GpuMat img_d, float & gain_r,
-	float & gain_g, float & gian_b) {
+	float & gain_g, float & gain_b) {
 #ifdef MEASURE_RUNTIME
 	time_t t1, t2, t3, t4, t5, t6;
 	t1 = clock();
