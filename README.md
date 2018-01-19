@@ -16,3 +16,13 @@ Try to implement google's white balance paper:
 
 3. A fast CUDA based white balance algorithm 
 
+## How to use
+1. download the training data and pre-trained model and extract to the root dir:
+
+link: https://pan.baidu.com/s/1jKeQWKm passwd: h2v5
+
+2. training code is in ./matlab_training
+
+3. C++/CUDA code used to apply auto white balance on input image is in ./Cpp
+
+4. pre-trained model is in ./data/model (you should download it from baiduyun)
