@@ -16,7 +16,7 @@ class for auto white balance
 #include "helper_cuda.h"
 
 //#define DEBUG_AUTO_WHITE_BALANCE
-#define MEASURE_RUNTIME
+//#define MEASURE_RUNTIME
 
 AutoWhiteBalance::AutoWhiteBalance() : binsize(1.0f / 64.0f),
 	smallSize(400,  300), uv0(-1.421875), frameInd(0) {}
