@@ -88,15 +88,15 @@ public:
 	int loadModel(std::string modelname);
 
 	/**
-	@brief apply auto white balance
+	@brief calc auto white balance
 	@param cv::cuda::GpuMat img_d: input gpu image
 	@param float & gain_r: output r channel gain
 	@param float & gain_g: output g channel gain
 	@param float & gain_b: output b channel gain
 	@return int
 	*/
-	int apply(cv::cuda::GpuMat img_d, float & gain_r,
-		float & gain_g, float & gian_b);
+	int calc(cv::cuda::GpuMat img_d, float & _gain_r,
+		float & _gain_g, float & _gain_b);
 
 	/**
 	@brief apply white balance
@@ -106,6 +106,6 @@ public:
 	@param float gain_b: input b channel gain
 	@return int
 	*/
-	int applyWhiteBalance(cv::cuda::GpuMat & img_d, float gain_r,
-		float gain_g, float gian_b);
+	int applyWhiteBalance(cv::cuda::GpuMat & img_d, float _gain_r,
+		float _gain_g, float _gain_b);
 };

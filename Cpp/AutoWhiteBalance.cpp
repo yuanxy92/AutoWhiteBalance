@@ -167,17 +167,17 @@ int AutoWhiteBalance::predictKalman() {
 @param float gain_b: input b channel gain
 @return int
 */
-int AutoWhiteBalance::applyWhiteBalance(cv::cuda::GpuMat & img_d, float gain_r,
-	float gain_g, float gian_b) {
+int AutoWhiteBalance::applyWhiteBalance(cv::cuda::GpuMat & img_d, float _gain_r,
+	float _gain_g, float _gain_b) {
 	// white balance color twist
 	Npp32f wbTwist[3][4] = {
 		{ 1.0, 0.0, 0.0, 0.0 },
 		{ 0.0, 1.0, 0.0, 0.0 },
 		{ 0.0, 0.0, 1.0, 0.0 }
 	};
-	wbTwist[0][0] = gain_b;
-	wbTwist[1][1] = gain_g;
-	wbTwist[2][2] = gain_r;
+	wbTwist[0][0] = _gain_b;
+	wbTwist[1][1] = _gain_g;
+	wbTwist[2][2] = _gain_r;
 	NppiSize osize;
 	osize.width = img_d.cols;
 	osize.height = img_d.rows;
@@ -193,8 +193,8 @@ int AutoWhiteBalance::applyWhiteBalance(cv::cuda::GpuMat & img_d, float gain_r,
 @param float & gain_b: output b channel gain
 @return int
 */
-int AutoWhiteBalance::apply(cv::cuda::GpuMat img_d, float & gain_r,
-	float & gain_g, float & gain_b) {
+int AutoWhiteBalance::calc(cv::cuda::GpuMat img_d, float & _gain_r,
+	float & _gain_g, float & _gain_b) {
 #ifdef MEASURE_RUNTIME
 	time_t t1, t2, t3, t4, t5, t6;
 	t1 = clock();
@@ -236,8 +236,8 @@ int AutoWhiteBalance::apply(cv::cuda::GpuMat img_d, float & gain_r,
 	printf("Kalman filter, cost %f milliseconds ...\n",
 		static_cast<float>(t6 - t5) / static_cast<float>(CLOCKS_PER_SEC) * 1000);
 #endif
-	gain_r = this->gain_r;
-	gain_g = this->gain_g;
-	gain_b = this->gain_b;
+	_gain_r = this->gain_r;
+	_gain_g = this->gain_g;
+	_gain_b = this->gain_b;
 	return 0;
 }
