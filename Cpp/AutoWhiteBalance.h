@@ -8,6 +8,9 @@ This algorithm is implemented based on google's two papers:
 @date Jan 19, 2018
 */
 
+#ifndef __AUTO_WHITE_BALANCE__
+#define __AUTO_WHITE_BALANCE__
+
 #include <cstdio>
 #include <cstdlib>
 #include <chrono>
@@ -120,3 +123,6 @@ public:
 	*/
 	static int GpuMatColorTwist(cv::cuda::GpuMat & img_d, float twist_data[3][4]);
 };
+
+
+#endif //__AUTO_WHITE_BALANCE__
