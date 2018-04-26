@@ -185,6 +185,15 @@ int AutoWhiteBalance::applyWhiteBalance(cv::cuda::GpuMat & img_d, float _gain_r,
 	return 0;
 }
 
+int AutoWhiteBalance::GpuMatColorTwist(cv::cuda::GpuMat & img_d, float twist_data[3][4])
+{
+	NppiSize osize;
+	osize.width = img_d.cols;
+	osize.height = img_d.rows;
+	NPP_CHECK_NPP(nppiColorTwist32f_8u_C3IR(img_d.data, img_d.step, osize, twist_data));
+	return 0;
+}
+
 /**
 @brief apply auto white balance
 @param cv::cuda::GpuMat img_d: input gpu images

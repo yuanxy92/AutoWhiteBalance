@@ -106,6 +106,17 @@ public:
 	@param float gain_b: input b channel gain
 	@return int
 	*/
-	int applyWhiteBalance(cv::cuda::GpuMat & img_d, float _gain_r,
+	static int applyWhiteBalance(cv::cuda::GpuMat & img_d, float _gain_r,
 		float _gain_g, float _gain_b);
+
+	/**
+	@brief Twist Color
+	*      dst[0] = aTwist[0][0] * src[0] + aTwist[0][1] * src[1] + aTwist[0][2] * src[2] + aTwist[0][3]
+	*      dst[1] = aTwist[1][0] * src[0] + aTwist[1][1] * src[1] + aTwist[1][2] * src[2] + aTwist[1][3]
+	*      dst[2] = aTwist[2][0] * src[0] + aTwist[2][1] * src[1] + aTwist[2][2] * src[2] + aTwist[2][3]
+	@param cv::cuda::GpuMat & img_d: input/output gpu image
+	@param  float **twist_data: 2 dimension float twist array data
+	@return int
+	*/
+	static int GpuMatColorTwist(cv::cuda::GpuMat & img_d, float twist_data[3][4]);
 };
