@@ -17,6 +17,8 @@ This algorithm is implemented based on google's two papers:
 #include <memory>
 // opencv
 #include <opencv2/opencv.hpp>
+#include <opencv2/cudawarping.hpp>
+#include <opencv2/cudaarithm.hpp>
 
 class AutoWhiteBalance {
 private:
