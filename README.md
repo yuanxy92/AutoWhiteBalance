@@ -2,7 +2,7 @@
 efficient and robust white balance algorithm
 
 ## Introduction
-Try to implement google's white balance paper:
+Try to implement google's white balance paper: (The training code is based on google's ffcc code using Matlab, https://github.com/google/ffcc ). I modified the code to get a simplified version with one kernel only for my own project.
 
 > Barron, Jonathan T. "Convolutional color constancy." In Proceedings of the IEEE International Conference on Computer Vision, pp. 379-387. 2015.
 
@@ -19,6 +19,7 @@ Try to implement google's white balance paper:
 ## How to use
 1. download the training data and pre-trained model and extract to the root dir:
     link: https://pan.baidu.com/s/1jKeQWKm passwd: h2v5
+    link: https://drive.google.com/file/d/18d12bQQv_ftPwFS3SZx0nFW6muApW_rB/view?usp=sharing
 
 2. training code is in ./matlab_training
 
